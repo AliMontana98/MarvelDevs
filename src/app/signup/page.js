@@ -1,42 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 
 export default function Signup() {
-    const router = useRouter();
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        try {
-            const res = await fetch("/api/auth/register", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    name,
-                    email,
-                    password,
-                }),
-            });
-
-            if (res.ok) {
-                router.push("/login");
-            } else {
-                const data = await res.json();
-                setError(data.message || "Registration failed");
-            }
-        } catch (error) {
-            setError("Something went wrong");
-        }
+        alert("Authentication is disabled. This is a demo UI.");
     };
 
     return (
@@ -45,11 +20,9 @@ export default function Signup() {
             <div className="flex-1 flex items-center justify-center px-6">
                 <div className="w-full max-w-md bg-[#1C1D21] p-8 rounded-xl border border-gray-800">
                     <h1 className="text-2xl font-bold mb-6 text-center">Create Account</h1>
-                    {error && (
-                        <div className="bg-red-500/10 text-red-500 p-3 rounded-lg mb-4 text-sm">
-                            {error}
-                        </div>
-                    )}
+                    <div className="bg-blue-500/10 text-blue-400 p-3 rounded-lg mb-4 text-sm">
+                        Demo UI only - Backend not connected
+                    </div>
                     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                         <div>
                             <label className="block text-sm font-medium text-gray-400 mb-1">Name</label>
